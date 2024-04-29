@@ -1,0 +1,162 @@
+<p>Módulo de PRODUCTOS</p>
+
+<!-- formulario de productos -->
+<c-row ngPreserveWhitespaces>
+  <c-col xs="12">
+    <c-card class="mb-4">
+      <c-card-header>
+        <strong>FORMULARIO PRODUCTOS</strong>
+      </c-card-header>
+      <c-card-body>
+        <form cForm class="row g-3">
+          <div class="col-auto">
+            <label cLabel for="codigo">Codigo</label>
+            <input cFormControl id="codigo" rows="3" type="number" name="codigo" [(ngModel)]="producto.codigo" />
+          </div>
+          <div class="col-auto">
+            <label cLabel for="descripcion">Descripción</label>
+            <input cFormControl id="descripcion" [(ngModel)]="producto.descripcion" placeholder="Ingrese descripción"
+              name="descripcion" type="text" />
+          </div>
+          <div class="col-auto">
+            <label cLabel for="precioCompra">Precio Compra</label>
+            <input cFormControl id="precioCompra" rows="3" type="number" name="precioCompra"
+              [(ngModel)]="producto.precioCompra" />
+          </div>
+          <div class="col-auto">
+            <label cLabel for="precioVenta">Precio Venta</label>
+            <input cFormControl id="precioVenta" rows="3" type="number" name="precioVenta"
+              [(ngModel)]="producto.precioVenta" />
+          </div>
+          <div class="col-auto">
+            <label cLabel for="stock">Stock</label>
+            <input cFormControl id="stock" rows="3" type="number" name="stock" [(ngModel)]="producto.stock" />
+          </div>
+          <div class="col-auto">
+            <label cLabel for="medida">Medida</label>
+            <input cFormControl id="medida" [(ngModel)]="producto.medida" placeholder="Nombre de medida" name="medida"
+              type="text" />
+          </div>
+          <div class="col-auto">
+            <label cLabel for="categoria">Categoría</label>
+            <input cFormControl id="categoria" [(ngModel)]="producto.categoria" placeholder="Nombre de categoria"
+              name="categoria" type="text" />
+          </div>
+          <div class="col-auto">
+            <label cLabel for="foto">Foto</label>
+            <input cFormControl id="foto" [(ngModel)]="producto.foto" placeholder="Tiene foto: si/no" name="foto"
+              type="text" />
+          </div>
+          <div class="col-auto">
+            <label cLabel for="activo">Activo</label>
+            <input cFormControl id="activo" rows="3" type="number" name="activo" [(ngModel)]="producto.activo" />
+          </div>
+          <div class="col-auto">
+            <label cLabel for="fechaRegistro">Fecha</label>
+            <input cFormControl id="fechaRegistro" rows="3" type="date" name="fechaRegistro"
+              [(ngModel)]="producto.fechaRegistro" />
+          </div>
+        </form>
+        <br>
+        <c-row>
+          <c-col>
+            <button (click)="agregarProducto()" cButton color="success">GUARDAR</button>
+          </c-col>
+        </c-row>
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row>
+
+<br><br>
+
+
+<button cButton class="me-1" color="primary" type="button" (click)="getOrdenarProductoPorCodigoDesc()">
+  Ordenar Codigo Desc
+</button>
+
+<button cButton class="me-1" color="primary" type="button" (click)="getListarPorFechaRegistroDesc()">
+  Ordenar fecha Desc
+</button>
+
+
+<button cButton class="me-1" color="primary" type="button" (click)="getListarPorNombre()">
+  Listar por Nombre de producto
+</button>
+
+<!-- <br>
+<br> -->
+<button cButton class="me-1" color="primary" type="button" (click)="getBuscarPrecioAlto()">
+  Buscar producto más caro
+</button>
+
+
+  <br>
+  <!-- <form cForm class="row g-3">
+
+    <div class="col-auto">
+      <input name="categoria" type="text" id="categoria">
+    </div>
+    <div class="col-auto">
+      <button cButton class="me-1" color="primary" type="button" (click)="getPorCategoria()">
+        Buscar por categoría
+      </button>
+    </div>
+  </form> -->
+
+
+  <!-- Tabla para mostrar datos -->
+
+  <c-col xs="12">
+    <c-card class="mb-4">
+      <c-card-header>
+        <strong>LISTA DE PRODUCTOS</strong> <small> — Vista Principal</small>
+      </c-card-header>
+      <c-card-body>
+        <table [striped]="true" cTable>
+          <thead>
+            <tr>
+              <th scope="col">Cod</th>
+              <th scope="col">Descripción</th>
+              <th scope="col">P Compra</th>
+              <th scope="col">P Venta</th>
+              <th scope="col">Stock</th>
+              <th scope="col">Medida</th>
+              <th scope="col">Categoría</th>
+              <th scope="col">Foto</th>
+              <th scope="col">Activo</th>
+              <th scope="col">Fecha Registro</th>
+              <th scope="col">ACCIONES</th>
+            </tr>
+          </thead>
+          <tbody> @for (item of listaProductos; track item) {
+            <tr>
+              <th scope="row">{{ item.codigo }}</th>
+              <td>{{ item.descripcion }}</td>
+              <td>{{ item.precioCompra }}</td>
+              <td>{{ item.precioVenta }}</td>
+              <td>{{ item.stock }}</td>
+              <td>{{ item.medida }}</td>
+              <td>{{ item.categoria }}</td>
+              <td>{{ item.foto }}</td>
+              <td>{{ item.activo }}</td>
+              <td>{{ item.fechaRegistro }}</td>
+              <td><button cButton class="me-1" color="warning" variant="outline" type="button"
+                  (click)="editarProducto(item)">
+                  Editar
+                </button>
+                <button cButton class="me-1" color="danger" variant="ghost" type="button"
+                  (click)="eliminarProducto(item)">
+                  Eliminar
+                </button>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </c-card-body>
+    </c-card>
+  </c-col>
+
+
+  
